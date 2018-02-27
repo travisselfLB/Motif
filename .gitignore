@@ -1,4 +1,4 @@
-node_modules/
-build/
-dist/
-test/
+resources/node_modules/
+resources/build/
+public/dist/
+resources/test/

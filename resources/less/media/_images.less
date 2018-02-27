@@ -1,11 +1,66 @@
 /*
 
+Figures
+
+Great for integrating images into bodies of text, the `.figure` class is
+modified by the `--left` and `--right` keywords depending on where you would
+like it placed.
+
+````plain-media
+<figure class="figure">
+    <img src="http://placehold.it/800x444" alt="A full-width photo">
+</figure>
+````
+
+````captioned-media
+<figure class="figure">
+    <img src="http://placehold.it/800x444" alt="A full-width photo with a caption">
+    <figcaption class="figcaption">This caption enhances the photo above. It should only be a brief sentence or two long.</figcaption>
+</figure>
+````
+
+*/
+
+.figure,
+[class*="figure--"] {
+
+    // Mixins
+    .margin-leader();
+
+    > a,
+    img {
+        &:extend( .new-line );
+    }
+}
+@media @small-screens-min {
+    [class*="figure--"] {
+        margin-top: 0;
+        max-width: 50%;
+    }
+    .figure {
+        &--left,
+        &--right {
+            padding-bottom: @half-vertical;
+        }
+        &--left    {
+            float: left;
+            padding-right: @double-side;
+        }
+        &--right   {
+            float: right;
+            padding-left: @double-side;
+        }
+    }
+}
+
+/*
+
 Media Object
 
-The Media Object is an image (or media-type) to the left with (typically) 
-descriptive content to the right. The media object can be whatever size it 
-wants, the basic format will remain the same. (Text will **not** wrap.)  This 
-has any number of applications, such as a checkbox next to a label with lots 
+The Media Object is an image (or media-type) to the left with (typically)
+descriptive content to the right. The media object can be whatever size it
+wants, the basic format will remain the same. (Text will **not** wrap.)  This
+has any number of applications, such as a checkbox next to a label with lots
 of text.
 
 See: [The Media Object Saves Hundreds of Lines of Code][1]
@@ -72,7 +127,7 @@ See: [The Media Object Saves Hundreds of Lines of Code][1]
             float: left;
         }
         > *,
-        &__desc { 
+        &__desc {
             & > :first-child {
                 margin-top: 0;
             }
@@ -86,61 +141,6 @@ See: [The Media Object Saves Hundreds of Lines of Code][1]
         > :first-child,
         &__figure {
             max-width: 50%;
-        }
-    }
-}
-
-/*
-
-Figures
-
-Great for integrating images into bodies of text, the `.figure` class is 
-modified by the `--left` and `--right` keywords depending on where you would 
-like it placed.
-
-````plain-media
-<figure class="figure">
-    <img src="http://placehold.it/800x444" alt="A full-width photo">
-</figure>
-````
-
-````captioned-media
-<figure class="figure">
-    <img src="http://placehold.it/800x444" alt="A full-width photo with a caption">
-    <figcaption class="figcaption">This caption enhances the photo above. It should only be a brief sentence or two long.</figcaption>
-</figure>
-````
-
-*/
-
-.figure,
-[class*="figure--"] {
-
-    // Mixins
-    .margin-leader();
-
-    > a,
-    img {
-        &:extend( .new-line );
-    }
-}
-@media @small-screens-min {
-    [class*="figure--"] {
-        margin-top: 0;
-        max-width: 50%;
-    }
-    .figure {
-        &--left,
-        &--right {
-            padding-bottom: @half-vertical;
-        }
-        &--left    {
-            float: left;
-            padding-right: @double-side;
-        }
-        &--right   {
-            float: right;
-            padding-left: @double-side;
         }
     }
 }
